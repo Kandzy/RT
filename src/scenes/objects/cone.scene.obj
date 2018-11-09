@@ -1,0 +1,11 @@
+<object>
+	<cone id="">
+		<radius>1</radius>
+		<height>1</height>
+		<position>0, 0, 0</position>
+		<rotation>0, 0, 0</rotation>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<transparency>0</transparency>
+	</cone>
+</object>

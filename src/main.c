@@ -15,6 +15,6 @@
 int main(int ac, char *av[])
 {
 	if (ac > 0)
-		read_scene_file(av[1]);
+		run_scene(av[1]);
 	return (0);
 }

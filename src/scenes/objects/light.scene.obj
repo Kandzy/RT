@@ -1,0 +1,9 @@
+<object>
+	<light id="">
+		<type>point</type>
+		<position>0, 0, 0</position>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<intensity>100</intensity>
+	</light>
+</object>

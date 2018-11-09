@@ -1,0 +1,38 @@
+<scene>
+	<camera>
+		position-x:50ip;
+		position-y:100ip;
+		position-z:100ip;
+		norm-x:0;
+		norm-y:0;
+		norm-z:1;
+	</camera>
+	
+	<light>
+		type:"point";
+		intensity:50%;
+		position-x:50ip;
+		position-y:100ip;
+		position-z:100ip;
+	</light>
+
+	<shere>
+		radius:1ip;
+	</shere>
+
+	<cone>
+		radius:1ip;
+		height:1ip;
+	</cone>
+
+	<cylinder>
+		radius:1ip;
+		height:1ip;
+	</cylinder>
+
+	<cube>
+		height:1ip;
+		width:1ip;
+		length:1ip;
+	</cube>
+</scene>

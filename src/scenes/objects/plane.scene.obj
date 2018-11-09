@@ -1,0 +1,11 @@
+<object>
+	<plane id="">
+		<height>1</height>
+		<width>1</width>
+		<position>0, 0, 0</position>
+		<rotation>0, 0, 0</rotation>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<transparency>0</transparency>
+	</plane>
+</object>
