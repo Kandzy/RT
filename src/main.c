@@ -11,10 +11,12 @@
 /* ************************************************************************** */
 
 #include "./../include/rt.h"
+#include "./../include/parsing.h"
 
 int main(int ac, char *av[])
 {
 	if (ac > 0)
-		run_scene(av[1]);
+		run_scene(av[1], NULL);
+	system("leaks rt");
 	return (0);
 }

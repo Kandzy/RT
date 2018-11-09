@@ -13,10 +13,13 @@
 #ifndef EXTERNAL_H
 # define EXTERNAL_H
 
+# define TRUE 1
+# define FALSE 0
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>
 # include <stdlib.h>
+# include "../libft/includes/libft.h"
 /*
 ** ONLY PRINTF! DEL BEFORE EVAL
 */

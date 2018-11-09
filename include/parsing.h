@@ -14,7 +14,10 @@
 # define PARSING_H
 
 # include "scene.h"
+# define TRUE 1
+# define FALSE 0
 
+int		run_scene(char *file, t_scene *sc);
 int		read_scene_file(char *file);
 
 #endif

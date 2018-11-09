@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c parsing/read_scene.c
+SRC = main.c parsing/read_scene.c parsing/run_scene.c
 
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
