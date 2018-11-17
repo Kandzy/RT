@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   warning.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkliukin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/20 21:35:00 by dkliukin          #+#    #+#             */
-/*   Updated: 2018/10/20 21:35:01 by dkliukin         ###   ########.fr       */
+/*   Created: 2018/11/17 11:09:30 by dkliukin          #+#    #+#             */
+/*   Updated: 2018/11/17 11:09:30 by dkliukin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../../include/warning.h"
 
-# include "scene.h"
-# include "external.h"
-# include "warning.h"
-# include "error.h"
-# define OBJ_TPL_PATH "src/scenes/objects/"
-# define OBJ_TPL_EXTENTION ".scene.obj"
-# define TRUE 1
-# define FALSE 0
+void		tag_not_closed(int warning_code)
+{
+ 	scene_tags_warning(warning_code);
+	camera_tags_warning(warning_code);
+	light_tag_warning(warning_code);
+}
 
-int		run_scene(char *file, t_scene *sc);
-int		read_scene_file(char *file);
-
-#endif
+void		warning(int warning_code)
+{
+	tag_not_closed(warning_code);
+}

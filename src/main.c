@@ -17,6 +17,6 @@ int main(int ac, char *av[])
 {
 	if (ac > 0)
 		run_scene(av[1], NULL);
-	system("leaks rt");
+	system("leaks rt | grep -iE \"leak\"");
 	return (0);
 }

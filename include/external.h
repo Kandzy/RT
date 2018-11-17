@@ -15,6 +15,8 @@
 
 # define TRUE 1
 # define FALSE 0
+# define NO_FILE 1
+
 # include <unistd.h>
 # include <math.h>
 # include <fcntl.h>

@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   scene_warning.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dkliukin <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/20 21:35:00 by dkliukin          #+#    #+#             */
-/*   Updated: 2018/10/20 21:35:01 by dkliukin         ###   ########.fr       */
+/*   Created: 2018/11/17 11:05:48 by dkliukin          #+#    #+#             */
+/*   Updated: 2018/11/17 11:05:49 by dkliukin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "../../include/warning.h"
 
-# include "scene.h"
-# include "external.h"
-# include "warning.h"
-# include "error.h"
-# define OBJ_TPL_PATH "src/scenes/objects/"
-# define OBJ_TPL_EXTENTION ".scene.obj"
-# define TRUE 1
-# define FALSE 0
+void		scene_tags_warning(int warning_code)
+{
+	if (warning_code == SCENE_TAG_NOT_CLOSED)
+		ft_putstr("\033[;33mWARNING: Tag <scene> not closed.\033[0m\n");
+	if (warning_code == SCENE_TAG_NOT_OPENED)
+		ft_putstr("\033[;33mWARNING: Scene closing tag was occured </scene>, scene\
+ open tag <scene> do not exist.\033[0m\n");
+}
 
-int		run_scene(char *file, t_scene *sc);
-int		read_scene_file(char *file);
-
-#endif
