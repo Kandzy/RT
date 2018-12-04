@@ -12,6 +12,7 @@
 
 #include "./../include/rt.h"
 #include "./../include/parsing.h"
+#include "./../include/warning.h"
 
 int main(int ac, char *av[])
 {

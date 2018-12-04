@@ -12,12 +12,27 @@
 
 #include "../../include/warning.h"
 
-void		scene_tags_warning(int warning_code)
+void		no_object_warning(int warning_code)
 {
-	if (warning_code == SCENE_TAG_NOT_CLOSED)
-		ft_putstr("\033[;33mWARNING: Tag <scene> not closed.\033[0m\n");
-	if (warning_code == SCENE_TAG_NOT_OPENED)
-		ft_putstr("\033[;33mWARNING: Scene closing tag was occured </scene>, scene\
- open tag <scene> do not exist.\033[0m\n");
+	if (warning_code == NO_TPL_OBJECT)
+	{
+		ft_putstr("There is no template objects with such tag.\n");
+	}
+}
+
+void		no_closing_tag_warning(int warning_code)
+{
+	if (warning_code == TAG_NOT_CLOSED)
+	{
+		ft_putstr("No closing tag has occurred.\n");
+	}
+}
+
+void		not_correct_input(int warning_code)
+{
+	if (warning_code == INPUT_NOT_CORRECT)
+	{
+		ft_putstr("Input validation issues. Check your input.\n");
+	}
 }
 

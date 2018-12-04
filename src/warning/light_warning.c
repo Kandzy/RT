@@ -15,12 +15,7 @@
 void		light_tag_warning(int warning_code)
 {
 	if (warning_code == LIGHT_DO_NOT_EXIST)
-		ft_putstr("\033[;33mWARNING: Light open tag <light> and close tag \
-</light> do not exist.\033[0m\n");
-	if (warning_code == LIGHT_TAG_NOT_OPENED)
-		ft_putstr("\033[;33mWARNING: Light closing tag was occured </light>, light\
- open tag <light> do not exist.\033[0m\n");
-	if (warning_code == LIGHT_TAG_NOT_CLOSED)
-		ft_putstr("\033[;33mWARNING: Light tag </light> do not exist.\033[0m\n");
+		ft_putstr("Light open tag <light> and close tag \
+</light> do not exist.\n");
 }
 

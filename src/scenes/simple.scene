@@ -3,9 +3,9 @@
 		position-x:50;
 		position-y:100;
 		position-z:100;
-		norm-x:0;
-		norm-y:0;
-		norm-z:1;
+		normalize-x:0;
+		normalize-y:0;
+		normalize-z:1;
 	</camera>
 	
 	<light>
@@ -33,6 +33,6 @@
 	<cube>
 		height:1;
 		width:1;
-		length:1;
+		length:1; \\BUG
 	</cube>
 </scene>

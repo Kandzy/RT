@@ -24,7 +24,7 @@ NAME = rt
 # FRAMEWORK =  -framework SDL2
 FRAMEWORK_PATH = -F /Library/Frameworks
 LIBDIR = ./libft
-CC = gcc
+CC = gcc -g
 REMAKE = rmk
 
 $(OBJ_DIR)%.o: %.c $(INC)

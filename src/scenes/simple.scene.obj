@@ -1,0 +1,66 @@
+<scene>
+<object>
+	<camera id="">
+		<position>0, 0, 0</position>
+		<normalize>0, 0, 1</normalize>
+	</camera>
+</object>
+
+<object>
+	<light id="">
+		<type>point</type>
+		<position>0, 0, 0</position>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<intensity>100</intensity>
+	</light>
+</object>
+
+<object>
+	<sphere id="">
+		<radius>1</radius>
+		<position>0, 0, 0</position>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<transparency>0</transparency>
+	</sphere>
+</object>
+
+<object>
+	<cone id="">
+		<radius>1</radius>
+		<height>1</height>
+		<position>0, 0, 0</position>
+		<rotation>0, 0, 0</rotation>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<transparency>0</transparency>
+	</cone>
+</object>
+
+<object>
+	<cylinder id="">
+		<radius>1</radius>
+		<height>1</height>
+		<position>0, 0, 0</position>
+		<rotation>0, 0, 0</rotation>
+		<colorRGB>255,255,255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<transparency>0</transparency>
+	</cylinder>
+</object>
+
+<object>
+	<parallelepiped id="">
+		<height>1</height>
+		<width>1</width>
+		<length>1</length>
+		<position>0, 0, 0</position>
+		<rotation>0, 0, 0</rotation>
+		<colorRGB>255, 255, 255</colorRGB>
+		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<transparency>0</transparency>
+	</parallelepiped>
+</object>
+
+</scene>

@@ -23,16 +23,16 @@ char	*ft_strtrim(char const *s)
 		return (NULL);
 	i = 0;
 	n = 0;
-	l = ft_strlen(s);
-	while (s[l - 1] == ' ' || s[l - 1] == '\t' || s[l - 1] == '\n')
+	l = ft_strlen(s) - 1;
+	while (s[l] == ' ' || s[l] == '\t' || s[l] == '\n' || s[l] == '\r')
 		l--;
-	if (l != 0)
+	if (l + 1 != 0)
 	{
-		while (s[n] == ' ' || s[n] == '\t' || s[n] == '\n')
+		while (s[n] == ' ' || s[n] == '\t' || s[n] == '\n' || s[n] == '\r')
 			n++;
 	}
-	trim = ft_strnew(l - n);
-	while (n != l && trim)
+	trim = ft_strnew(l + 1 - n);
+	while (n != l + 1 && trim)
 	{
 		trim[i] = s[n];
 		n++;

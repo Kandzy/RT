@@ -1,0 +1,6 @@
+<object>
+	<camera id="">
+		<position>0, 0, 0</position>
+		<normalize>0, 0, 1</normalize>
+	</camera>
+</object>

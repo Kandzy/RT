@@ -22,6 +22,21 @@
 # define TRUE 1
 # define FALSE 0
 
+typedef struct		s_tags
+{
+	int				open;
+	int				close;
+	char			*in_tag;
+	char			*name;
+	char			*obj_tpl;
+}					t_tags;
+
+typedef struct		s_param_val
+{
+	char			*name;
+	char			*val;
+}					t_param_val;
+
 int		run_scene(char *file, t_scene *sc);
 int		read_scene_file(char *file);
 
