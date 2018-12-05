@@ -33,6 +33,6 @@
 	<cube>
 		height:1;
 		width:1;
-		length:1; \\BUG
+		length:1;
 	</cube>
 </scene>

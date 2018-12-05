@@ -53,6 +53,7 @@ static void		parse_object(char *src, char *objname, char *obj, int com_fd)
 	int			nl;
 	int			j;
 	int			tmp_nl;
+	// char		*last;
 
 	nl = 0;
 	if (!ft_strcmp(objname, "scene"))
@@ -60,7 +61,13 @@ static void		parse_object(char *src, char *objname, char *obj, int com_fd)
 	params = ft_strsplit(src, ';');
 	ft_putendl_fd(obj, com_fd);
 
+	// last = ft_strtrim(params[array_length(params) - 1]);
+	// ft_putnbr(ft_strlen(last));
+	// printf("%s\n", last);
+	// ft_strdel(&last);
+
 	ft_strdel(&params[array_length(params) - 1]);
+
 	i = 0;
 	while (params[i])
 	{
