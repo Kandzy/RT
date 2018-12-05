@@ -19,6 +19,8 @@
 # include "error.h"
 # define OBJ_TPL_PATH "src/scenes/objects/"
 # define OBJ_TPL_EXTENTION ".scene.obj"
+# define OPEN_TAG 1
+# define CLOSE_TAG 2
 # define TRUE 1
 # define FALSE 0
 
@@ -37,7 +39,21 @@ typedef struct		s_param_val
 	char			*val;
 }					t_param_val;
 
-int		run_scene(char *file, t_scene *sc);
+int		match_tag(char *scene, char *tag, int start_from, int mod);
+char	*get_tpl_obj(char *obj);
+int		find_tag_position(char *scene, char **to_find, int start_from);
+void	set_param_in_tpl(t_param_val param, char **obj);
+void	cut_params(char *scene, int com_fd);
 int		read_scene_file(char *file);
+int		run_scene(char *file, t_scene *sc);
+
+
+/*
+** Additional functionality
+*/
+
+char		*ft_strjoin_mod(char *a, char *b);
+char		*ft_strjoin_mod_rew(char *a, char *b);
+int			array_length(char **array);
 
 #endif

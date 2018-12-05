@@ -1,0 +1,132 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tag_information_parsing.c                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkliukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/12/05 17:38:22 by dkliukin          #+#    #+#             */
+/*   Updated: 2018/12/05 17:38:23 by dkliukin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../../include/parsing.h"
+
+static void		compile_params(char *to_split_param, char **obj, int nl)
+{
+	char		**tmp;
+	t_param_val	param;
+	int			i;
+	char		*warning_param;
+
+	set_warning_line(get_warning_line() + nl);
+	tmp = ft_strsplit(to_split_param, ':');
+	if (array_length(tmp) != 2)
+	{
+		warning_param = ft_strtrim(tmp[0]);
+		printf("%s\n",warning_param);
+		set_warning_message("Check your parameter \"");
+		set_warning_message(warning_param);
+		set_warning_message("...\" for correct input\n");
+		warning(INPUT_NOT_CORRECT);
+		ft_strdel(&warning_param);
+	}
+	else {
+		param.name = tmp[0];
+		param.val = tmp[1];
+		set_param_in_tpl(param, obj);
+	}
+	i = 0;
+	while (tmp[i])
+	{
+		ft_strdel(&tmp[i]);
+		i++;
+	}
+	free(tmp);
+	set_warning_line(get_warning_line() - nl);
+}
+
+static void		parse_object(char *src, char *objname, char *obj, int com_fd)
+{
+	int			i;
+	char		**params;
+	int			nl;
+	int			j;
+	int			tmp_nl;
+
+	nl = 0;
+	if (!ft_strcmp(objname, "scene"))
+		return ;
+	params = ft_strsplit(src, ';');
+	ft_putendl_fd(obj, com_fd);
+
+	ft_strdel(&params[array_length(params) - 1]);
+	i = 0;
+	while (params[i])
+	{
+		j = 0;
+		tmp_nl = 0;
+		while (params[i][j] != '\0')
+		{
+			if (ft_isalnum(params[i][j]))
+				break ;
+			if (params[i][j] == '\n')
+				tmp_nl++;
+			j++;
+		}
+		compile_params(params[i], &obj, nl + tmp_nl);
+		j = -1;
+		while (params[i][++j] != '\0')
+			if (params[i][j]== '\n')
+				nl++;
+		ft_strdel(&(params[i]));
+		i++;
+	}
+	free(params);
+}
+
+static void		tag_info_parse(char *scene, t_tags *tag, int i, int com_fd)
+{
+	tag->name = ft_strsub(scene, i+1, (ft_strstr(&scene[i], ">") - (&scene[i] + 1)));
+	if (!ft_strstr(tag->name, "/"))
+	{
+		tag->open = match_tag(scene, tag->name, i, OPEN_TAG);
+		tag->close = match_tag(scene, tag->name, tag->open, CLOSE_TAG);
+		if (tag->close == -1)
+		{
+			warning_tag_not_closed(tag->name);
+			warning(TAG_NOT_CLOSED);
+		}
+		if (tag->close && ft_strcmp(tag->name, "scene"))
+			tag->in_tag = ft_strsub(scene, tag->open + ft_strlen(tag->name) + 2, tag->close - (tag->open + ft_strlen(tag->name) + 2));
+		if (ft_strcmp(tag->name, "scene"))
+			tag->obj_tpl = get_tpl_obj(tag->name);
+		if (tag->close && tag->in_tag && ft_strcmp(tag->name, "scene"))
+		{
+			parse_object(tag->in_tag, tag->name, tag->obj_tpl, com_fd);
+			ft_strdel(&tag->in_tag);
+		}
+		if (ft_strcmp(tag->name, "scene"))
+			ft_strdel(&tag->obj_tpl);
+	}
+	ft_strdel(&tag->name);
+}
+
+void		cut_params(char *scene, int com_fd)
+{
+	int		i = 0;
+	t_tags	tag;
+
+	set_warning_line(1);	
+	while (scene[i] != '\0')
+	{
+		if (scene[i] == '\n')
+			set_warning_line(get_warning_line() + 1);
+		if (scene[i] == '<')
+		{
+			tag_info_parse(scene, &tag, i, com_fd);
+		}
+		i++;
+	}
+	set_warning_line(0);
+}

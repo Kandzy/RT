@@ -11,14 +11,16 @@
 # **************************************************************************** #
 
 SRC = main.c \
-	parsing/read_scene.c parsing/run_scene.c \
+	parsing/read_scene.c parsing/run_scene.c parsing/additional_function.c parsing/find_tag_position.c\
+	parsing/get_template_object.c parsing/match_tag.c parsing/tag_information_parsing.c parsing/set_params_in_template.c\
 	warning/warning.c warning/camera_warning.c warning/light_warning.c warning/scene_warning.c \
 	error/error.c error/file_error.c \
 
 SRC_DIR = ./src/
 OBJ_DIR = ./obj/
 OBJ = $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
-INC = ./include/rt.h ./include/scene.h ./include/position.h 
+INC = ./include/rt.h ./include/scene.h ./include/warning.h ./include/error.h ./include/parsing.h\
+		./include/external.h
 NAME = rt
 # CFLAG = -Werror -Wextra -Wall -O2
 # FRAMEWORK =  -framework SDL2

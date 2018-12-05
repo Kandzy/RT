@@ -47,7 +47,7 @@ int		get_warning_line()
 	return (g_warning.line);
 }
 
-void		no_warning(warning_code)
+void		no_warning(int warning_code)
 {
 	if (warning_code == NO_WARNINGS)
 		ft_putstr("\n");
