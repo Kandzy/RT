@@ -9,7 +9,7 @@
 	</camera>
 	
 	<light>
-		type:"point";
+		type:point;
 		intensity:50;
 		position-x:50;
 		position-y:100;
@@ -17,22 +17,30 @@
 	</light>
 
 	<sphere>
-		radius:1;
+		radius:6;
 	</sphere>
 
 	<cone>
-		radius:1;
-		height:1;
+		radius:3;
+		height:3;
+		height:6;
+		position-x:11;
+		position-y:17;
+		position-z:13;
 	</cone>
 
 	<cylinder>
-		radius:1;
-		height:1;
+		radius:4;
+		height:6;
+		colorHexadecimal:423627;
 	</cylinder>
 
 	<cube>
-		height:1;
-		width:1;
-		length:1;
+		height:5;
+		width:5;
+		length:3;
+		rotation:-301,2,360;
+		transparency:70;
+		colorRGB:32,5,4;
 	</cube>
 </scene>

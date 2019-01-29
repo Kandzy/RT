@@ -24,20 +24,21 @@ static void		compile_params(char *to_split_param, char **obj, int nl)
 	if (array_length(tmp) != 2)
 	{
 		warning_param = ft_strtrim(tmp[0]);
-		printf("%s\n",warning_param);
+		printf("%s\n", warning_param);
 		set_warning_message("Check your parameter \"");
 		set_warning_message(warning_param);
 		set_warning_message("...\" for correct input\n");
 		warning(INPUT_NOT_CORRECT);
 		ft_strdel(&warning_param);
 	}
-	else {
-		param.name = tmp[0];
-		param.val = tmp[1];
+	else
+	{
+		param.name = ft_strjoin(tmp[0], "");
+		param.val = ft_strjoin(tmp[1], "");
 		set_param_in_tpl(param, obj);
 	}
 	i = 0;
-	while (tmp[i])
+	while (tmp[i] != NULL)
 	{
 		ft_strdel(&tmp[i]);
 		i++;
@@ -46,28 +47,23 @@ static void		compile_params(char *to_split_param, char **obj, int nl)
 	set_warning_line(get_warning_line() - nl);
 }
 
-static void		parse_object(char *src, char *objname, char *obj, int com_fd)
+static void		parse_object(char *src, char *objname, char **obj, int com_fd)
 {
 	int			i;
 	char		**params;
 	int			nl;
 	int			j;
 	int			tmp_nl;
-	// char		*last;
+	char		*last;
 
 	nl = 0;
 	if (!ft_strcmp(objname, "scene"))
 		return ;
 	params = ft_strsplit(src, ';');
-	ft_putendl_fd(obj, com_fd);
-
-	// last = ft_strtrim(params[array_length(params) - 1]);
-	// ft_putnbr(ft_strlen(last));
-	// printf("%s\n", last);
-	// ft_strdel(&last);
-
-	ft_strdel(&params[array_length(params) - 1]);
-
+	last = ft_strtrim(params[array_length(params) - 1]);
+	if (last == NULL || ft_strlen(last) == 0)
+		ft_strdel(&params[array_length(params) - 1]);
+	ft_strdel(&last);
 	i = 0;
 	while (params[i])
 	{
@@ -81,20 +77,22 @@ static void		parse_object(char *src, char *objname, char *obj, int com_fd)
 				tmp_nl++;
 			j++;
 		}
-		compile_params(params[i], &obj, nl + tmp_nl);
+		compile_params(params[i], obj, nl + tmp_nl);
 		j = -1;
 		while (params[i][++j] != '\0')
-			if (params[i][j]== '\n')
+			if (params[i][j] == '\n')
 				nl++;
 		ft_strdel(&(params[i]));
 		i++;
 	}
+	ft_putendl_fd(*obj, com_fd);
 	free(params);
 }
 
 static void		tag_info_parse(char *scene, t_tags *tag, int i, int com_fd)
 {
-	tag->name = ft_strsub(scene, i+1, (ft_strstr(&scene[i], ">") - (&scene[i] + 1)));
+	tag->name = ft_strsub(scene, i + 1,
+	(ft_strstr(&scene[i], ">") - (&scene[i] + 1)));
 	if (!ft_strstr(tag->name, "/"))
 	{
 		tag->open = match_tag(scene, tag->name, i, OPEN_TAG);
@@ -105,26 +103,28 @@ static void		tag_info_parse(char *scene, t_tags *tag, int i, int com_fd)
 			warning(TAG_NOT_CLOSED);
 		}
 		if (tag->close && ft_strcmp(tag->name, "scene"))
-			tag->in_tag = ft_strsub(scene, tag->open + ft_strlen(tag->name) + 2, tag->close - (tag->open + ft_strlen(tag->name) + 2));
+			tag->in_tag = ft_strsub(scene, tag->open + ft_strlen(tag->name) + 2,
+			tag->close - (tag->open + ft_strlen(tag->name) + 2));
 		if (ft_strcmp(tag->name, "scene"))
 			tag->obj_tpl = get_tpl_obj(tag->name);
 		if (tag->close && tag->in_tag && ft_strcmp(tag->name, "scene"))
 		{
-			parse_object(tag->in_tag, tag->name, tag->obj_tpl, com_fd);
+			parse_object(tag->in_tag, tag->name, &tag->obj_tpl, com_fd);
 			ft_strdel(&tag->in_tag);
 		}
-		if (ft_strcmp(tag->name, "scene"))
+		if (ft_strcmp(tag->name, "scene") && tag->obj_tpl != NULL)
 			ft_strdel(&tag->obj_tpl);
 	}
 	ft_strdel(&tag->name);
 }
 
-void		cut_params(char *scene, int com_fd)
+void			cut_params(char *scene, int com_fd)
 {
-	int		i = 0;
-	t_tags	tag;
+	int			i;
+	t_tags		tag;
 
-	set_warning_line(1);	
+	i = 0;
+	set_warning_line(1);
 	while (scene[i] != '\0')
 	{
 		if (scene[i] == '\n')

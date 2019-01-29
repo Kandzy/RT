@@ -39,5 +39,29 @@ int			array_length(char **array)
 	{
 		i++;
 	}
-	return i;
+	return (i);
+}
+
+int		is_numeric(char *str_val)
+{
+	char *str;
+	char *p1;
+	
+	str = ft_strtrim(str_val);
+	p1 = str;
+	while (*str != '\0')
+	{
+		if(!ft_isdigit(*str))
+		{
+			
+			if (*str != '-' && *str != '+')
+			{
+				ft_strdel(&p1);
+				return (FALSE);
+			}
+		}
+		str++;
+	}
+	ft_strdel(&p1);
+	return (TRUE);
 }

@@ -1,0 +1,35 @@
+#include "../../include/parsing.h"
+#include "../../include/warning.h"
+
+int			check_hexadecimal_color(char *value, char *param_name)
+{
+	char	*trimmed_val;
+	int		i;
+
+	trimmed_val = ft_strtrim(value);
+	if (ft_strlen(trimmed_val) > 6 || ft_strlen(trimmed_val) < 1)
+	{
+		set_warning_message("Unsupported format of hexadecimal value!");
+		warning(NO_WARNINGS);
+		ft_strdel(&trimmed_val);
+		return (FALSE);
+	}
+	i = 0;
+	while (i < ft_strlen(trimmed_val))
+	{
+		if (!ft_isdigit(trimmed_val[i]) &&
+		(trimmed_val[i] < 'A' || trimmed_val[i] > 'F') &&
+		(trimmed_val[i] < 'a' || trimmed_val[i] > 'f'))
+		{
+			set_warning_message("Wrong symbol in hexadecimal string '");
+			set_warning_message(trimmed_val);
+			set_warning_message("', check your input.");
+			warning(NO_WARNINGS);
+			ft_strdel(&trimmed_val);
+			return (FALSE);
+		}
+		i++;
+	}
+	ft_strdel(&trimmed_val);
+	return (TRUE);
+}

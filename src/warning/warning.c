@@ -12,15 +12,6 @@
 
 #include "../../include/warning.h"
 
-t_warning			g_warning;
-
-void		warning_tag_not_closed(char *tag)
-{
-	set_warning_message("Tag </");
-	set_warning_message(tag);
-	set_warning_message("> do not exist.\n");
-}
-
 void		set_warning_message(char *param)
 {
 	char	*tmp;
@@ -28,9 +19,10 @@ void		set_warning_message(char *param)
 	if (g_warning.message == NULL)
 	{
 		g_warning.message = ft_strnew(ft_strlen(param));
-		g_warning.message = ft_strcpy(g_warning.message ,param);
+		g_warning.message = ft_strcpy(g_warning.message, param);
 	}
-	else {
+	else
+	{
 		tmp = ft_strjoin(g_warning.message, param);
 		ft_strdel(&g_warning.message);
 		g_warning.message = tmp;
@@ -42,7 +34,7 @@ void		set_warning_line(int line)
 	g_warning.line = line;
 }
 
-int		get_warning_line()
+int			get_warning_line(void)
 {
 	return (g_warning.line);
 }
@@ -55,13 +47,15 @@ void		no_warning(int warning_code)
 
 void		warning(int warning_code)
 {
-	ft_putstr("\033[;33m");
-	if (get_warning_line()){
-		ft_putstr("Line: ");
+	ft_putstr("\033[;33m ./");
+	ft_putstr(get_warning_file());
+	if (get_warning_line())
+	{
+		ft_putstr(" Line: ");
 		ft_putnbr(get_warning_line());
-		ft_putstr(". ");
+		ft_putstr(".");
 	}
-	ft_putstr("Warning: \n\t");
+	ft_putstr(" Warning: \n\t");
 	if (g_warning.message)
 	{
 		ft_putstr(g_warning.message);
@@ -71,6 +65,9 @@ void		warning(int warning_code)
 	no_object_warning(warning_code);
 	no_closing_tag_warning(warning_code);
 	not_correct_input(warning_code);
+	warning_rgb_field_type(warning_code);
+	warning_rotation_field_type(warning_code);
+	warning_transparency_field_type(warning_code);
 	no_warning(warning_code);
 	ft_putstr("\033[0m");
 }

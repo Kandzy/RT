@@ -1,0 +1,54 @@
+#include "../../include/parsing.h"
+#include "../../include/warning.h"
+
+int 			check_type(char *value, char *param_name)
+{
+	if (ft_strcmp(value, "point"))
+	{
+		set_warning_message("Unrecognized type of light '");
+		set_warning_message(value);
+		set_warning_message("' please check your input.\n");
+		set_warning_message("Default value 'point' will be used for type.");
+		warning(NO_WARNINGS);
+		return (FALSE);
+	}
+		return (TRUE);
+}
+
+static int		general_check_field(char *value, char *param_name)
+{
+	if (is_numeric(value))
+		return (TRUE);
+	else
+	{
+		not_numeric_warning(value, param_name);
+		return (FALSE);
+	}
+}
+
+int				check_value(char *value, char *param_name)
+{
+	if (!ft_strcmp(param_name, "rotation") ||
+		!ft_strcmp(param_name, "colorRGB") ||
+		!ft_strcmp(param_name, "colorHexadecimal") ||
+		!ft_strcmp(param_name, "type") ||
+	!ft_strcmp(param_name, "transparency"))
+	{
+		if (!ft_strcmp(param_name, "type"))
+			return (check_type(value, param_name));
+		if (!ft_strcmp(param_name, "colorRGB"))
+			return (check_rgb_color(value, param_name));
+		if (!ft_strcmp(param_name, "colorHexadecimal"))
+			return (check_hexadecimal_color(value, param_name));
+		if (!ft_strcmp(param_name, "rotation"))
+			return (check_rotation(value, param_name));
+		if (!ft_strcmp(param_name, "transparency"))
+			return (check_transparency(value, param_name));
+		return (TRUE);
+	}
+	else
+	{
+		return (general_check_field(value, param_name));
+	}
+	return (FALSE);
+}

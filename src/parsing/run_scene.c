@@ -12,8 +12,7 @@
 
 #include "../../include/parsing.h"
 
-
-int			run_scene(char *file, t_scene *scene)
+int			run_scene(char *file)
 {
 	int		fd;
 	char	*line;
@@ -23,19 +22,15 @@ int			run_scene(char *file, t_scene *scene)
 
 	line = NULL;
 	fd = open(file, O_RDWR);
-	comp_fn = ft_strjoin(file, ".obj");
-	com_fd = open(comp_fn, O_CREAT | O_RDWR | O_TRUNC , 0755);
-	ft_putendl_fd("<scene>", com_fd);
 	if (read(fd, NULL, 0) < 0)
 	{
 		error(NO_FILE);
 		return (FALSE);
 	}
+	comp_fn = ft_strjoin(file, ".obj");
+	com_fd = open(comp_fn, O_CREAT | O_RDWR | O_TRUNC, 0755);
+	ft_putendl_fd("<scene>", com_fd);
 	txt_scene = ft_strnew(0);
-	if (scene == NULL)
-	{
-		printf("scene run\n");
-	}
 	while (get_next_line(fd, &line) > 0)
 	{
 		line = ft_strjoin_mod(line, "\n");
@@ -46,5 +41,7 @@ int			run_scene(char *file, t_scene *scene)
 	ft_strdel(&txt_scene);
 	ft_strdel(&comp_fn);
 	ft_strdel(&line);
+	close(fd);
+	close(com_fd);
 	return (TRUE);
 }

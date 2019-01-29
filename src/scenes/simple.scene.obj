@@ -1,24 +1,24 @@
 <scene>
 <object>
 	<camera id="">
-		<position>0, 0, 0</position>
-		<normalize>0, 0, 1</normalize>
+		<position>50,100,100</position>
+		<normalize>0,0,1</normalize>
 	</camera>
 </object>
 
 <object>
 	<light id="">
 		<type>point</type>
-		<position>0, 0, 0</position>
+		<position>50,100,100</position>
 		<colorRGB>255,255,255</colorRGB>
 		<colorHexadecimal>FFFFFF</colorHexadecimal>
-		<intensity>100</intensity>
+		<intensity>50</intensity>
 	</light>
 </object>
 
 <object>
 	<sphere id="">
-		<radius>1</radius>
+		<radius>6</radius>
 		<position>0, 0, 0</position>
 		<colorRGB>255,255,255</colorRGB>
 		<colorHexadecimal>FFFFFF</colorHexadecimal>
@@ -28,9 +28,9 @@
 
 <object>
 	<cone id="">
-		<radius>1</radius>
-		<height>1</height>
-		<position>0, 0, 0</position>
+		<radius>3</radius>
+		<height>6</height>
+		<position>11,17,13</position>
 		<rotation>0, 0, 0</rotation>
 		<colorRGB>255,255,255</colorRGB>
 		<colorHexadecimal>FFFFFF</colorHexadecimal>
@@ -40,26 +40,26 @@
 
 <object>
 	<cylinder id="">
-		<radius>1</radius>
-		<height>1</height>
+		<radius>4</radius>
+		<height>6</height>
 		<position>0, 0, 0</position>
 		<rotation>0, 0, 0</rotation>
 		<colorRGB>255,255,255</colorRGB>
-		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<colorHexadecimal>423627</colorHexadecimal>
 		<transparency>0</transparency>
 	</cylinder>
 </object>
 
 <object>
 	<parallelepiped id="">
-		<height>1</height>
-		<width>1</width>
-		<length>1</length>
+		<height>5</height>
+		<width>5</width>
+		<length>3</length>
 		<position>0, 0, 0</position>
-		<rotation>0, 0, 0</rotation>
-		<colorRGB>255, 255, 255</colorRGB>
+		<rotation>-301,2,360</rotation>
+		<colorRGB>32,5,4</colorRGB>
 		<colorHexadecimal>FFFFFF</colorHexadecimal>
-		<transparency>0</transparency>
+		<transparency>70</transparency>
 	</parallelepiped>
 </object>
 

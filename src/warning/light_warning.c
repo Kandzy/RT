@@ -18,4 +18,3 @@ void		light_tag_warning(int warning_code)
 		ft_putstr("Light open tag <light> and close tag \
 </light> do not exist.\n");
 }
-

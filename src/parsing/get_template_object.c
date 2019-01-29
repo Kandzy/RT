@@ -15,7 +15,7 @@
 static int	object_exists(char *obj, int fd)
 {
 	if (!ft_strcmp(obj, "scene"))
-		return 1;
+		return (1);
 	if (fd <= 0)
 	{
 		set_warning_message("Object <");
@@ -24,13 +24,13 @@ static int	object_exists(char *obj, int fd)
 		set_warning_message(" undefined\n");
 		return (0);
 	}
-	return 1;
+	return (1);
 }
 
 char		*get_tpl_obj(char *obj)
 {
 	int		fig_obj_fd;
-	char 	*obj_tpl;
+	char	*obj_tpl;
 	char	*line;
 	char	*path;
 

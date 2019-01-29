@@ -20,6 +20,19 @@ void		no_object_warning(int warning_code)
 	}
 }
 
+void		not_numeric_warning(char *str, char *coord)
+{
+	set_warning_message("Not numeric value '");
+	set_warning_message(str);
+	set_warning_message("' please check your input.\n");
+	set_warning_message("\tDefault value will be used for '");
+	set_warning_message(coord);
+	set_warning_message("'");
+	if (!ft_strcmp(coord, "x") || !ft_strcmp(coord, "y") || !ft_strcmp(coord, "z"))
+		set_warning_message(" coordinate.");
+	warning(NO_WARNINGS);
+}
+
 void		no_closing_tag_warning(int warning_code)
 {
 	if (warning_code == TAG_NOT_CLOSED)
@@ -36,3 +49,9 @@ void		not_correct_input(int warning_code)
 	}
 }
 
+void		warning_tag_not_closed(char *tag)
+{
+	set_warning_message("Tag </");
+	set_warning_message(tag);
+	set_warning_message("> do not exist.\n");
+}
