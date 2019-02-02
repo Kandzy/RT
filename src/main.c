@@ -14,9 +14,31 @@
 #include "./../include/parsing.h"
 #include "./../include/warning.h"
 
-void	processing_scene()
+void	get_tag_inner_info(char *scene_txt, t_scene **scene, int i)
 {
-	t_scene		*scene;
+	t_tags	*tag;
+	tag->name = ft_strsub(scene, i + 1,
+			(ft_strstr(&scene[i], ">") - (&scene[i] + 1)));
+}
+
+void	processing_objects(char *scene_txt, t_scene **scene)
+{
+	int		i;
+
+	i = 0;
+	printf("%s\n",scene_txt);
+	while (scene_txt[i] != '\0')
+	{
+		if (scene_txt[i] == '<')
+		{
+			
+		}
+		i++;
+	}
+}
+
+void	processing_scene(t_scene **scene)
+{
 	int			scene_fd;
 	char		*line;
 	char		*scene_txt;
@@ -29,7 +51,8 @@ void	processing_scene()
 		line = ft_strjoin_mod(line, "\n");
 		scene_txt = ft_strconcat(scene_txt, line);
 	}
-	printf("%s\n",scene_txt);
+	processing_objects(scene_txt, scene);
+	// printf("%s\n",scene_txt);
 	ft_strdel(&line);
 	ft_strdel(&scene_txt);
 	close(scene_fd);
@@ -37,12 +60,13 @@ void	processing_scene()
 
 int	main(int ac, char *av[])
 {
-	set_warning_file(av[1]);
+	t_scene		*scene;
 	if (ac > 0)
 	{		
 		if (run_scene(av[1]))
 		{
-			processing_scene();
+			set_warning_file(av[1]);
+			processing_scene(&scene);
 		}
 	}
 	system("leaks rt | grep -iE \"leak\"");
