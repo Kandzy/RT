@@ -86,7 +86,6 @@ void		rebuild_object(char **obj, t_tags position, t_param_val param, char *coord
 	char *obj_1;
 	char *obj_2;
 	char *values;
-
 	obj_1 = ft_strsub(*obj, 0, position.open + ft_strlen(param.name) + 2);
 	obj_2 = ft_strsub(*obj, position.close, ft_strlen(*obj) - position.close);
 	values = ft_strsub(*obj, position.open + ft_strlen(param.name) + 2,
@@ -108,6 +107,7 @@ void		rebuild_object(char **obj, t_tags position, t_param_val param, char *coord
 	ft_strdel(obj);
 	ft_strdel(&values);
 	*obj = ft_strconcat(obj_1, obj_2);
+	
 }
 
 void		set_param_in_tpl(t_param_val param, char **obj)
@@ -116,7 +116,7 @@ void		set_param_in_tpl(t_param_val param, char **obj)
 	char	*name;
 	char	**tmp;
 	char	*coord;
-
+	
 	coord = NULL;
 	name = ft_strtrim(param.name);
 	ft_strdel(&param.name);
@@ -133,8 +133,11 @@ void		set_param_in_tpl(t_param_val param, char **obj)
 		set_warning_message("\" can't be found\n");
 		warning(NO_WARNINGS);
 	}
-	param_tag.close = match_tag(*obj, param.name, param_tag.open, CLOSE_TAG);
-	rebuild_object(obj, param_tag, param, coord);
+	else
+	{
+		param_tag.close = match_tag(*obj, param.name, param_tag.open, CLOSE_TAG);
+		rebuild_object(obj, param_tag, param, coord);
+	}
 	if (coord)
 		ft_strdel(&coord);
 	free(tmp);

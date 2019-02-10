@@ -19,6 +19,7 @@ static void		compile_params(char *to_split_param, char **obj, int nl)
 	int			i;
 	char		*warning_param;
 
+	
 	set_warning_line(get_warning_line() + nl);
 	tmp = ft_strsplit(to_split_param, ':');
 	if (array_length(tmp) != 2)
@@ -45,6 +46,7 @@ static void		compile_params(char *to_split_param, char **obj, int nl)
 	}
 	free(tmp);
 	set_warning_line(get_warning_line() - nl);
+	
 }
 
 static void		parse_object(char *src, char *objname, char **obj, int com_fd)
@@ -87,6 +89,7 @@ static void		parse_object(char *src, char *objname, char **obj, int com_fd)
 	}
 	ft_putendl_fd(*obj, com_fd);
 	free(params);
+	
 }
 
 static void		tag_info_parse(char *scene, t_tags *tag, int i, int com_fd)
