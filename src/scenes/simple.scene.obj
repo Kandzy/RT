@@ -1,13 +1,13 @@
 <scene>
 <object>
-	<camera id="">
+	<camera>
 		<position>50,100,100</position>
 		<normalize>0,0,1</normalize>
 	</camera>
 </object>
 
 <object>
-	<light id="">
+	<light>
 		<type>point</type>
 		<position>50,100,100</position>
 		<colorRGB>255,255,255</colorRGB>
@@ -17,7 +17,7 @@
 </object>
 
 <object>
-	<sphere id="">
+	<sphere>
 		<radius>6</radius>
 		<position>0, 0, 0</position>
 		<colorRGB>255,255,255</colorRGB>
@@ -27,7 +27,7 @@
 </object>
 
 <object>
-	<cone id="">
+	<cone>
 		<radius>3</radius>
 		<height>6</height>
 		<position>11,17,13</position>
@@ -39,7 +39,7 @@
 </object>
 
 <object>
-	<cylinder id="">
+	<cylinder>
 		<radius>4</radius>
 		<height>6</height>
 		<position>0, 0, 0</position>
@@ -51,7 +51,7 @@
 </object>
 
 <object>
-	<parallelepiped id="">
+	<parallelepiped>
 		<height>5</height>
 		<width>5</width>
 		<length>3</length>

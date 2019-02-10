@@ -16,9 +16,30 @@
 
 void	get_tag_inner_info(char *scene_txt, t_scene **scene, int i)
 {
-	t_tags	*tag;
-	tag->name = ft_strsub(scene, i + 1,
-			(ft_strstr(&scene[i], ">") - (&scene[i] + 1)));
+	t_tags	tag;
+	
+	tag.name = ft_strsub(scene_txt, i + 1,
+			(int)(ft_strstr(&scene_txt[i], ">") - (&scene_txt[i] + 1)));
+	if (!ft_strstr(tag.name, "/"))
+	{
+		tag.open = match_tag(scene_txt, tag.name, i, OPEN_TAG);
+		tag.close = match_tag(scene_txt, tag.name, tag.open, CLOSE_TAG);
+		if (tag.close == -1)
+		{
+			warning_tag_not_closed(tag.name);
+			warning(TAG_NOT_CLOSED);
+		}
+		if (tag.close && ft_strcmp(tag.name, "scene") && ft_strcmp(tag.name, "object"))
+			tag.in_tag = ft_strsub(scene_txt, tag.open + ft_strlen(tag.name) + 2,
+			tag.close - (tag.open + ft_strlen(tag.name) + 2));
+		if (tag.close && tag.in_tag && ft_strcmp(tag.name, "scene") && ft_strcmp(tag.name, "object"))
+		{
+			get_tag_inner_info(scene_txt, scene, 0);
+			// printf("%s\n", tag.in_tag);
+			ft_strdel(&tag.in_tag);
+		}
+	}
+	// printf("%s\n", tag.name);
 }
 
 void	processing_objects(char *scene_txt, t_scene **scene)
@@ -26,12 +47,13 @@ void	processing_objects(char *scene_txt, t_scene **scene)
 	int		i;
 
 	i = 0;
-	printf("%s\n",scene_txt);
+	// printf("%s\n",scene_txt);
 	while (scene_txt[i] != '\0')
 	{
+		
 		if (scene_txt[i] == '<')
 		{
-			
+			get_tag_inner_info(scene_txt, scene, i);
 		}
 		i++;
 	}

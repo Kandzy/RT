@@ -1,5 +1,5 @@
 <object>
-	<cylinder id="">
+	<cylinder>
 		<radius>1</radius>
 		<height>1</height>
 		<position>0, 0, 0</position>

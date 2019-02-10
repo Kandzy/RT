@@ -1,5 +1,5 @@
 <object>
-	<sphere id="">
+	<sphere>
 		<radius>1</radius>
 		<position>0, 0, 0</position>
 		<colorRGB>255,255,255</colorRGB>
