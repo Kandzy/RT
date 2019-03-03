@@ -13,8 +13,8 @@
 SRC = main.c \
 	parsing/run_scene.c parsing/additional_function.c parsing/find_tag_position.c parsing/check_rgb_type.c parsing/check_rotation_field.c\
 	parsing/check_transparency_field.c parsing/get_template_object.c parsing/match_tag.c parsing/tag_information_parsing.c parsing/set_params_in_template.c\
-	parsing/check_hex_field.c parsing/check_fields.c\
-	warning/warning.c warning/camera_warning.c warning/light_warning.c warning/scene_warning.c warning/type_warning.c\
+	parsing/check_hex_field.c parsing/check_fields.c parsing/processing_scene.c \
+	warning/warning.c warning/camera_warning.c warning/light_warning.c warning/scene_warning.c warning/type_warning.c warning/custom_warning.c\
 	error/error.c error/file_error.c warning/warning_ext.c\
 
 SRC_DIR = ./src/

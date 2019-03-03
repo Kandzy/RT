@@ -1,5 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_hex_field.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkliukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/02 20:39:55 by dkliukin          #+#    #+#             */
+/*   Updated: 2019/03/02 20:51:23 by dkliukin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parsing.h"
 #include "../../include/warning.h"
+
+static void	wrong_hex_synb_warning(char **trimmed_val)
+{
+	set_warning_message("Wrong symbol in hexadecimal string '");
+	set_warning_message(*trimmed_val);
+	set_warning_message("', check your input.");
+	warning(NO_WARNINGS);
+	ft_strdel(trimmed_val);
+}
 
 int			check_hexadecimal_color(char *value, char *param_name)
 {
@@ -21,11 +42,7 @@ int			check_hexadecimal_color(char *value, char *param_name)
 		(trimmed_val[i] < 'A' || trimmed_val[i] > 'F') &&
 		(trimmed_val[i] < 'a' || trimmed_val[i] > 'f'))
 		{
-			set_warning_message("Wrong symbol in hexadecimal string '");
-			set_warning_message(trimmed_val);
-			set_warning_message("', check your input.");
-			warning(NO_WARNINGS);
-			ft_strdel(&trimmed_val);
+			wrong_hex_synb_warning(&trimmed_val);
 			return (FALSE);
 		}
 		i++;

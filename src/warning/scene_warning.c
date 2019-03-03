@@ -28,7 +28,8 @@ void		not_numeric_warning(char *str, char *coord)
 	set_warning_message("\tDefault value will be used for '");
 	set_warning_message(coord);
 	set_warning_message("'");
-	if (!ft_strcmp(coord, "x") || !ft_strcmp(coord, "y") || !ft_strcmp(coord, "z"))
+	if (!ft_strcmp(coord, "x") || !ft_strcmp(coord, "y") ||
+	!ft_strcmp(coord, "z"))
 		set_warning_message(" coordinate.");
 	warning(NO_WARNINGS);
 }

@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_fields.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkliukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/02 20:51:35 by dkliukin          #+#    #+#             */
+/*   Updated: 2019/03/02 20:51:36 by dkliukin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/parsing.h"
 #include "../../include/warning.h"
 
-int 			check_type(char *value, char *param_name)
+int				check_type(char *value, char *param_name)
 {
 	if (ft_strcmp(value, "point"))
 	{
@@ -12,7 +24,7 @@ int 			check_type(char *value, char *param_name)
 		warning(NO_WARNINGS);
 		return (FALSE);
 	}
-		return (TRUE);
+	return (TRUE);
 }
 
 static int		general_check_field(char *value, char *param_name)

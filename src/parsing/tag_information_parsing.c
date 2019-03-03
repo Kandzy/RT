@@ -17,20 +17,12 @@ static void		compile_params(char *to_split_param, char **obj, int nl)
 	char		**tmp;
 	t_param_val	param;
 	int			i;
-	char		*warning_param;
 
-	
 	set_warning_line(get_warning_line() + nl);
 	tmp = ft_strsplit(to_split_param, ':');
 	if (array_length(tmp) != 2)
 	{
-		warning_param = ft_strtrim(tmp[0]);
-		printf("%s\n", warning_param);
-		set_warning_message("Check your parameter \"");
-		set_warning_message(warning_param);
-		set_warning_message("...\" for correct input\n");
-		warning(INPUT_NOT_CORRECT);
-		ft_strdel(&warning_param);
+		compile_params_warning(tmp[0]);
 	}
 	else
 	{
@@ -46,7 +38,29 @@ static void		compile_params(char *to_split_param, char **obj, int nl)
 	}
 	free(tmp);
 	set_warning_line(get_warning_line() - nl);
-	
+}
+
+static void		parse_object_param(char **params, int i, int nl, char **obj)
+{
+	int			j;
+	int			tmp_nl;
+
+	j = 0;
+	tmp_nl = 0;
+	while (params[i][j] != '\0')
+	{
+		if (ft_isalnum(params[i][j]))
+			break ;
+		if (params[i][j] == '\n')
+			tmp_nl++;
+		j++;
+	}
+	compile_params(params[i], obj, nl + tmp_nl);
+	j = -1;
+	while (params[i][++j] != '\0')
+		if (params[i][j] == '\n')
+			nl++;
+	ft_strdel(&(params[i]));
 }
 
 static void		parse_object(char *src, char *objname, char **obj, int com_fd)
@@ -54,8 +68,6 @@ static void		parse_object(char *src, char *objname, char **obj, int com_fd)
 	int			i;
 	char		**params;
 	int			nl;
-	int			j;
-	int			tmp_nl;
 	char		*last;
 
 	nl = 0;
@@ -69,27 +81,11 @@ static void		parse_object(char *src, char *objname, char **obj, int com_fd)
 	i = 0;
 	while (params[i])
 	{
-		j = 0;
-		tmp_nl = 0;
-		while (params[i][j] != '\0')
-		{
-			if (ft_isalnum(params[i][j]))
-				break ;
-			if (params[i][j] == '\n')
-				tmp_nl++;
-			j++;
-		}
-		compile_params(params[i], obj, nl + tmp_nl);
-		j = -1;
-		while (params[i][++j] != '\0')
-			if (params[i][j] == '\n')
-				nl++;
-		ft_strdel(&(params[i]));
+		parse_object_param(params, i, nl, obj);
 		i++;
 	}
 	ft_putendl_fd(*obj, com_fd);
 	free(params);
-	
 }
 
 static void		tag_info_parse(char *scene, t_tags *tag, int i, int com_fd)

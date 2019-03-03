@@ -11,7 +11,7 @@
 		<type>point</type>
 		<position>50,100,100</position>
 		<colorRGB>255,255,255</colorRGB>
-		<colorHexadecimal>FFFFFF</colorHexadecimal>
+		<colorHexadecimal>FFfFF</colorHexadecimal>
 		<intensity>50</intensity>
 	</light>
 </object>
@@ -55,7 +55,7 @@
 		<height>5</height>
 		<width>5</width>
 		<length>3</length>
-		<position>0, 0, 0</position>
+		<position>1,2,21</position>
 		<rotation>-301,2,360</rotation>
 		<colorRGB>32,5,4</colorRGB>
 		<colorHexadecimal>FFFFFF</colorHexadecimal>

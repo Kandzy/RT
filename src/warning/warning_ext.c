@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   warning_ext.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dkliukin <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/02 17:12:00 by dkliukin          #+#    #+#             */
+/*   Updated: 2019/03/02 17:12:01 by dkliukin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/warning.h"
 
 void	set_warning_file(char *file)
@@ -10,10 +22,10 @@ void	set_warning_file(char *file)
 
 char	*get_warning_file(void)
 {
-	return g_warning.file;
+	return (g_warning.file);
 }
 
-void	delete_warning_file()
+void	delete_warning_file(void)
 {
 	ft_strdel(&g_warning.file);
 }
